@@ -1141,6 +1141,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="productImages">وێنەی کاڵاکان</label>
+                    <input type="file" id="productImages" name="productImages" accept="image/*" multiple style="padding: 10px; border: 2px dashed var(--gold); background: #fafafa; cursor: pointer;">
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 5px;">دەتوانیت چەندین وێنە هەڵبژێریت</p>
+                </div>
+
+                <div class="form-group">
                     <label for="location">شوێنی گەیاندن</label>
                     <button type="button" id="getLocationBtn" class="location-btn">
                         <i class="fas fa-map-marker-alt"></i>
@@ -1236,10 +1242,7 @@
                         <h3>${item.title}</h3>
                         <p class="detail-item">جۆری قوماش: <span>${item.fabric}</span></p>
                         <div class="price-tag">${item.price} د.ع</div>
-                        
-                        <a href="https://wa.me/9647507717116?text=سڵاو، %0Aدەمەوێت ئەم پارچەیە داوا بکەم:%0A%0Aناوی کاڵا: ${item.title}%0Aنرخ: ${item.price} د.ع%0Aجۆری قوماش: ${item.fabric}%0A%0Aوێنەی کاڵا: ${item.img}" class="order-btn" target="_blank">
-                            داواکردن <i class="fa-brands fa-whatsapp"></i>
-                        </a>
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">بۆ داواکردن، تکایە فۆرمی پەیوەندی پر بکەرەوە</p>
                     </div>
                 </div>
             `;
@@ -1316,11 +1319,11 @@
                     // Show success message
                     statusDiv.style.display = 'block';
                     statusDiv.className = 'location-status success';
-                    statusDiv.innerHTML = `<i class="fas fa-check-circle"></i> شوێنەکەت بە سەرکەوتوویی نێردرا!<br><a href="${userLocation}" target="_blank" class="location-link">کلیک بکە بۆ بینینی شوێنەکەت</a>`;
+                    statusDiv.innerHTML = `<i class="fas fa-check-circle"></i> شــوێـنــەکـــەت  بــە ســەرکــەوتــویـی دیــاری کــــرا ا!<br><a href="${userLocation}" target="_blank" class="location-link">کلیک بکە بۆ بینینی شوێنەکەت</a>`;
                     
-                    // Update button
+                    // Update button 
                     btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-check"></i> شوێنەکەت نێردرا';
+                    btn.innerHTML = '<i class="fas fa-check"></i> شــوێـنــەکـــەت دیــاری کــــرا';
                     btn.style.background = '#28a745';
                 },
                 function(error) {
@@ -1332,7 +1335,7 @@
                             errorMessage = 'تکایە ڕێگە بدە بە وێبگەڕ بۆ زانینی شوێنەکەت';
                             break;
                         case error.POSITION_UNAVAILABLE:
-                            errorMessage = 'زانیاری شوێن بەردەست نییە';
+                            errorMessage = 'تــکــایــە لـۆکـــەیــشــنـت بـــکــەوە';
                             break;
                         case error.TIMEOUT:
                             errorMessage = 'کاتەکە بەسەرچوو بۆ وەرگرتنی شوێن';
@@ -1363,6 +1366,7 @@
             const phone = document.getElementById('phone').value;
             const location = document.getElementById('locationData').value;
             const message = document.getElementById('message').value;
+            const imageInput = document.getElementById('productImages');
             
             // Check if location is provided
             if (!location) {
@@ -1370,14 +1374,31 @@
                 return;
             }
             
+            // Get selected images info
+            let imageInfo = '';
+            if (imageInput.files.length > 0) {
+                imageInfo = `%0A%0A*ژمارەی وێنەکان:* ${imageInput.files.length} وێنە%0A`;
+                for (let i = 0; i < imageInput.files.length; i++) {
+                    imageInfo += `${i + 1}. ${imageInput.files[i].name}%0A`;
+                }
+                imageInfo += `%0A*تکایە وێنەکان بنێرە لە دوای ئەم پەیامەدا*`;
+            }
+            
             // Create WhatsApp message with clickable location link
-            const whatsappMessage = `*پەیامی نوێ لە فۆرمی پەیوەندی:*%0A%0A*ناو:* ${name}%0A*ژمارەی مۆبایل:* ${phone}%0A*شوێنی گەیاندن:* ${location}%0A*پەیام:* ${message}`;
+            const whatsappMessage = `*پەیامی نوێ لە فۆرمی پەیوەندی:*%0A%0A*ناو:* ${name}%0A*ژمارەی مۆبایل:* ${phone}%0A*شوێنی گەیاندن:* ${location}%0A*پەیام:* ${message}${imageInfo}`;
             
             // WhatsApp number
             const whatsappNumber = '9647507717116';
             
             // Open WhatsApp with the message
             window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
+            
+            // Show instruction to send images
+            if (imageInput.files.length > 0) {
+                setTimeout(() => {
+                    alert('تکایە وێنەکان لە واتساپدا بنێرە');
+                }, 1000);
+            }
             
             // Reset form
             this.reset();
