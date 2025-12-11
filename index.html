@@ -397,12 +397,17 @@
             }
 
             .about-features {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
 
             .feature-box {
-                padding: 20px;
+                padding: 30px 20px;
+            }
+
+            .feature-icon {
+                width: 70px;
+                height: 70px;
             }
 
             .feature-box i {
@@ -410,7 +415,11 @@
             }
 
             .feature-box h4 {
-                font-size: 1.1rem;
+                font-size: 1.15rem;
+            }
+
+            .feature-box p {
+                font-size: 0.9rem;
             }
         }
 
@@ -434,16 +443,21 @@
             }
 
             .about-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                padding: 0;
             }
 
             .about-text h2 {
                 font-size: 2.2rem;
             }
 
-            .about-text p {
+            .about-description p {
                 font-size: 1rem;
+            }
+
+            .about-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin-top: 40px;
             }
 
             .section-header h2 {
@@ -501,12 +515,38 @@
                 font-size: 1.8rem;
             }
 
+            .about-description p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
             .about-features {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-top: 30px;
             }
 
             .feature-box {
-                padding: 20px 15px;
+                padding: 20px 12px;
+            }
+
+            .feature-icon {
+                width: 55px;
+                height: 55px;
+                margin: 0 auto 12px;
+            }
+
+            .feature-box i {
+                font-size: 1.5rem;
+            }
+
+            .feature-box h4 {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+
+            .feature-box p {
+                font-size: 0.8rem;
             }
 
             .section-header h2 {
@@ -572,6 +612,40 @@
                 padding: 60px 15px;
             }
 
+            .about-header {
+                margin-bottom: 40px;
+            }
+
+            .about-features {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+                margin-top: 30px !important;
+            }
+
+            .feature-box {
+                padding: 18px 10px !important;
+                border-radius: 15px;
+            }
+
+            .feature-icon {
+                width: 50px !important;
+                height: 50px !important;
+                margin: 0 auto 10px !important;
+            }
+
+            .feature-box i {
+                font-size: 1.4rem !important;
+            }
+
+            .feature-box h4 {
+                font-size: 0.9rem !important;
+                margin-bottom: 6px;
+            }
+
+            .feature-box p {
+                font-size: 0.75rem !important;
+            }
+
             .location-section {
                 padding: 60px 15px;
             }
@@ -617,80 +691,151 @@
 
         /* --- ABOUT SECTION --- */
         .about-section {
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            background: #ffffff;
             padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, rgba(0, 0, 0, 0.02) 100%);
+            z-index: 0;
         }
 
         .about-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
         .about-text h2 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             color: var(--dark);
             margin-bottom: 20px;
             position: relative;
+            display: inline-block;
+            font-weight: 700;
         }
 
         .about-text h2:after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            right: 0;
-            width: 100px;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
             height: 4px;
             background: var(--gold);
+            border-radius: 2px;
         }
 
-        .about-text p {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: #333;
-            margin-bottom: 15px;
-            text-align: justify;
+        .about-description {
+            max-width: 900px;
+            margin: 40px auto 0;
+            text-align: center;
+        }
+
+        .about-description p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .about-description p:last-child {
+            margin-bottom: 0;
         }
 
         .about-features {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 70px;
         }
 
         .feature-box {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+            padding: 40px 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: visible;
+        }
+
+        .feature-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .feature-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-12px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.25);
+            border-color: var(--gold);
+        }
+
+        .feature-box:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gold) 0%, #c49a2c 100%);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-box:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
         }
 
         .feature-box i {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            color: white;
         }
 
         .feature-box h4 {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             color: var(--dark);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            line-height: 1.4;
         }
 
         .feature-box p {
-            font-size: 1rem;
-            color: var(--gray);
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
         }
 
         /* --- LOCATION SECTION --- */
@@ -918,30 +1063,41 @@
     <!-- ABOUT US SECTION -->
     <section class="about-section" id="about">
         <div class="about-content">
-            <div class="about-text">
-                <h2>دەربارەی ئێمە</h2>
-                <p>کۆتاڵی ماهی یەکێکە لە باشترین برەندەکانی جلوبەرگی ئافرەتان لە کوردستان. ئێمە بە خۆمانەوە شانازی دەکەین بە پێشکەشکردنی چاکترین جۆرەکانی جل و بەرگ بە نرخی گونجاو.</p>
-                <p>لەگەڵ چەندین ساڵ ئەزموون لە بواری مۆدە و جلوبەرگ، ئێمە هەمیشە هەوڵدەدەین بەرزترین ئاستی کوالیتی و خزمەتگوزاری پێشکەش بکەین بە کڕیارەکانمان.</p>
-                <p>هەموو بەرهەمەکانمان بە وردی هەڵبژێردراون بۆ ئەوەی دڵنیابین لە جوانی و متمانەی ئێوە.</p>
+            <div class="about-header">
+                <div class="about-text">
+                    <h2>دەربارەی ئێمە</h2>
+                </div>
+                <div class="about-description">
+                    <p>کۆتاڵی ماهی یەکێکە لە باشترین برەندەکانی جلوبەرگی ئافرەتان لە کوردستان. ئێمە بە خۆمانەوە شانازی دەکەین بە پێشکەشکردنی چاکترین جۆرەکانی جل و بەرگ بە نرخی گونجاو.</p>
+                    <p>لەگەڵ چەندین ساڵ ئەزموون لە بواری مۆدە و جلوبەرگ، ئێمە هەمیشە هەوڵدەدەین بەرزترین ئاستی کوالیتی و خزمەتگوزاری پێشکەش بکەین بە کڕیارەکانمان.</p>
+                </div>
             </div>
             <div class="about-features">
                 <div class="feature-box">
-                    <i class="fas fa-gem"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
                     <h4>کوالیتی بەرز</h4>
                     <p>باشترین جۆری قوماش</p>
                 </div>
                 <div class="feature-box">
-                    <i class="fas fa-truck-fast"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-truck-fast"></i>
+                    </div>
                     <h4>گەیاندنی خێرا</h4>
                     <p>گەیاندن بۆ هەموو شوێنێک</p>
                 </div>
                 <div class="feature-box">
-                    <i class="fas fa-tags"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
                     <h4>نرخی گونجاو</h4>
                     <p>کوالیتی بەرز بە نرخی باش</p>
                 </div>
                 <div class="feature-box">
-                    <i class="fas fa-headset"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
                     <h4>پشتگیری ٢٤/٧</h4>
                     <p>هەمیشە ئامادەین یارمەتیتان بدەین</p>
                 </div>
@@ -1081,7 +1237,7 @@
                         <p class="detail-item">جۆری قوماش: <span>${item.fabric}</span></p>
                         <div class="price-tag">${item.price} د.ع</div>
                         
-                        <a href="https://wa.me/9647507717116?text=سڵاو، دەمەوێت ئەم پارچەیە داوا بکەم: ${item.title}" class="order-btn" target="_blank">
+                        <a href="https://wa.me/9647507717116?text=سڵاو، %0Aدەمەوێت ئەم پارچەیە داوا بکەم:%0A%0Aناوی کاڵا: ${item.title}%0Aنرخ: ${item.price} د.ع%0Aجۆری قوماش: ${item.fabric}%0A%0Aوێنەی کاڵا: ${item.img}" class="order-btn" target="_blank">
                             داواکردن <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </div>
@@ -1230,7 +1386,6 @@
             document.getElementById('getLocationBtn').style.background = '#4CAF50';
             userLocation = null;
         });
-    </script>
     </script>
 
 </body>
