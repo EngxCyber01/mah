@@ -1068,8 +1068,8 @@
                     <h2>دەربارەی ئێمە</h2>
                 </div>
                 <div class="about-description">
-                    <p>کۆتاڵی ماهی یەکێکە لە باشترین برەندەکانی جلوبەرگی ئافرەتان لە کوردستان. ئێمە بە خۆمانەوە شانازی دەکەین بە پێشکەشکردنی چاکترین جۆرەکانی جل و بەرگ بە نرخی گونجاو.</p>
-                    <p>لەگەڵ چەندین ساڵ ئەزموون لە بواری مۆدە و جلوبەرگ، ئێمە هەمیشە هەوڵدەدەین بەرزترین ئاستی کوالیتی و خزمەتگوزاری پێشکەش بکەین بە کڕیارەکانمان.</p>
+                    <p>کوتاڵی ماهی یەکێکە لە شوێنەکانی فرۆشتنی باشترین جۆری قوماشی ئافرەتان بە گونجاوترین نرخ.</p>
+                    <p>لەگەڵ چەندین ساڵ ئەزموون لە بواری قوماش، ئێمە هەمیشە هەوڵدەدەین بەرزترین ئاستی کوالیتی و خزمەتگوزاری پێشکەش بکەین بە کڕیارەکانمان.</p>
                 </div>
             </div>
             <div class="about-features">
@@ -1098,7 +1098,7 @@
                     <div class="feature-icon">
                         <i class="fas fa-headset"></i>
                     </div>
-                    <h4>پشتگیری ٢٤/٧</h4>
+                    <h4>خــێــرا لــە وڵامــدانــەوە</h4>
                     <p>هەمیشە ئامادەین یارمەتیتان بدەین</p>
                 </div>
             </div>
@@ -1117,8 +1117,8 @@
 
     <!-- LOCATION SECTION -->
     <section class="location-section" id="location">
-        <h2>شوێنی شۆپەکەمان</h2>
-        <p>سەردانی شۆپەکەمان بکە و کۆلێکشنەکانمان ببینە</p>
+        <h2>شـــــوێـــنـــمــــان</h2>
+        <p>سەردانمان بکە و بابەتەکانمان ببینە</p>
         <a href="https://maps.app.goo.gl/QuFQKvswSan6WXov7" target="_blank" class="map-btn">
             <i class="fas fa-map-marker-alt"></i>
             کردنەوەی نەخشە و ڕێنیشاندەر
@@ -1138,12 +1138,6 @@
                 <div class="form-group">
                     <label for="phone">ژمارەی مۆبایل</label>
                     <input type="tel" id="phone" name="phone" required placeholder="٠٧٥٠ ٠٠٠ ٠٠٠٠">
-                </div>
-
-                <div class="form-group">
-                    <label for="productImages">وێنەی کاڵاکان</label>
-                    <input type="file" id="productImages" name="productImages" accept="image/*" multiple style="padding: 10px; border: 2px dashed var(--gold); background: #fafafa; cursor: pointer;">
-                    <p style="font-size: 0.85rem; color: #666; margin-top: 5px;">دەتوانیت چەندین وێنە هەڵبژێریت</p>
                 </div>
 
                 <div class="form-group">
@@ -1366,7 +1360,6 @@
             const phone = document.getElementById('phone').value;
             const location = document.getElementById('locationData').value;
             const message = document.getElementById('message').value;
-            const imageInput = document.getElementById('productImages');
             
             // Check if location is provided
             if (!location) {
@@ -1374,31 +1367,14 @@
                 return;
             }
             
-            // Get selected images info
-            let imageInfo = '';
-            if (imageInput.files.length > 0) {
-                imageInfo = `%0A%0A*ژمارەی وێنەکان:* ${imageInput.files.length} وێنە%0A`;
-                for (let i = 0; i < imageInput.files.length; i++) {
-                    imageInfo += `${i + 1}. ${imageInput.files[i].name}%0A`;
-                }
-                imageInfo += `%0A*تکایە وێنەکان بنێرە لە دوای ئەم پەیامەدا*`;
-            }
-            
             // Create WhatsApp message with clickable location link
-            const whatsappMessage = `*پەیامی نوێ لە فۆرمی پەیوەندی:*%0A%0A*ناو:* ${name}%0A*ژمارەی مۆبایل:* ${phone}%0A*شوێنی گەیاندن:* ${location}%0A*پەیام:* ${message}${imageInfo}`;
+            const whatsappMessage = `*پەیامی نوێ لە فۆرمی پەیوەندی:*%0A%0A*ناو:* ${name}%0A*ژمارەی مۆبایل:* ${phone}%0A*شوێنی گەیاندن:* ${location}%0A*پەیام:* ${message}`;
             
             // WhatsApp number
             const whatsappNumber = '9647507717116';
             
             // Open WhatsApp with the message
             window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
-            
-            // Show instruction to send images
-            if (imageInput.files.length > 0) {
-                setTimeout(() => {
-                    alert('تکایە وێنەکان لە واتساپدا بنێرە');
-                }, 1000);
-            }
             
             // Reset form
             this.reset();
